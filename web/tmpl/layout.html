@@ -1,0 +1,21 @@
+{{define "header"}}
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+{{end}}
+
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="en">
+    {{template "header"}}
+<body>
+<h1>Hello World</h1>
+{{range $blog := .}}
+    <div>
+        <h3>{{$blog.Name}}</h3>
+        <div>{{convertToHTML $blog.Content}}</div>
+    </div>
+{{end}}
+</body>
+{{end}}
