@@ -2,7 +2,27 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
+        <link rel="stylesheet" href="/web/public/css/main.css">
     </head>
+{{end}}
+{{define "nav-bar"}}
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">Code4Func</h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="#">Menu 1</a>
+            <a class="p-2 text-dark" href="#">Menu 2</a>
+            <a class="p-2 text-dark" href="#">Menu 3</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="#">Sign up</a>
+    </div>
+{{end}}
+
+{{define "footer"}}
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Code4Func Inc.</span>
+        </div>
+    </footer>
 {{end}}
 
 {{define "layout"}}
@@ -10,12 +30,16 @@
 <html lang="en">
     {{template "header"}}
 <body>
-<h1>Hello World</h1>
-{{range $blog := .}}
-    <div>
-        <h3>{{$blog.Name}}</h3>
-        <div>{{convertToHTML $blog.Content}}</div>
+    {{template "nav-bar"}}
+    <div class="container">
+        <h1>Hello World</h1>
+        {{range $blog := $.blogs}}
+            <div>
+                <h3>{{$blog.Name}}</h3>
+                <div>{{html $blog.Content}}</div>
+            </div>
+        {{end}}
     </div>
-{{end}}
+    {{template "footer"}}
 </body>
 {{end}}

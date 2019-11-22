@@ -14,10 +14,26 @@ func main() {
 
 	err := handlers.StartRouting(r)
 	if err != nil {
-		fmt.Printf("Error was happend when starting router: %v", err)
+		showErr(mainErr{"starting router", err})
 		return
 	}
 	fmt.Println("Starting serve on port 8000")
-	http.ListenAndServe(":8000", r)
+	err = http.ListenAndServe(":8000", r)
+	showErr(mainErr{"starting http server", err})
+}
 
+type (
+	mainErr struct {
+		name string
+		originErr error
+	}
+)
+
+func (m mainErr) Error() string {
+	return fmt.Sprintf("Error was happend when %s: %v", m.name, m.originErr)
+}
+
+func showErr(err error) {
+	fmt.Println(err.Error())
+	fmt.Println("Start server was fail. The process was forced to exit!")
 }
