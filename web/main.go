@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/go-chi/chi/middleware"
 	"github.com/skynet0590/code4fun_go1/web/handlers"
+	"github.com/skynet0590/code4fun_go1/web/models"
 	"net/http"
 	"github.com/go-chi/chi"
 )
@@ -15,6 +16,11 @@ func main() {
 	err := handlers.StartRouting(r)
 	if err != nil {
 		showErr(mainErr{"starting router", err})
+		return
+	}
+	err = models.StartDatabase()
+	if err != nil {
+		showErr(mainErr{"starting database", err})
 		return
 	}
 	fmt.Println("Starting serve on port 8000")

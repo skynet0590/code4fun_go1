@@ -58,6 +58,7 @@ func StartRouting(r *chi.Mux) (err error) {
 			w.Write([]byte("Hello from sub router"))
 		})
 	})
+	r.Route("/auth", auth)
 	return
 }
 

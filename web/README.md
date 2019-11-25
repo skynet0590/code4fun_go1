@@ -1,6 +1,7 @@
 1. **Tài liệu sử dụng:**
 
 * [html template](https://golang.org/pkg/html/template/)
+* [database](https://github.com/jinzhu/gorm)
 2. **Bài tập về nhà**
 > Như mọi người thấy trong file ./web/handlers/init.go dòng 24 mình chỉ parse duy nhất 1 file. 
 > Trong thực tế project sẽ bao gồm rất nhiều file nằm trong 1 thư mục và code của chúng ta phải đảm bảo
