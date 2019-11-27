@@ -10,10 +10,11 @@
             method: 'post',
             data: data,
             success(_d) {
-                console.log(_d)
+                location.href = "/"
             },
             error(err) {
-                console.log(err)
+                $('#notify').text(Helper.parseError(err));
+                $('#notify').show();
             }
         })
     })
