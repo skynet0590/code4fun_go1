@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"github.com/skynet0590/code4fun_go1/web/handlers/api"
 	"github.com/skynet0590/code4fun_go1/web/helper"
 	"github.com/gorilla/sessions"
 	"github.com/skynet0590/code4fun_go1/web/models"
@@ -78,6 +79,7 @@ func StartRouting(r *chi.Mux) (err error) {
 		})
 	})
 	r.Route("/auth", auth)
+	r.Route("/api", api.Start)
 	return
 }
 

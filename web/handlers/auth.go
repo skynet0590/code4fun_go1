@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"github.com/go-chi/chi"
+	"github.com/skynet0590/code4fun_go1/web/helper"
 	"github.com/skynet0590/code4fun_go1/web/models"
 	"net/http"
 )
@@ -50,29 +50,21 @@ func auth(r chi.Router)  {
 			session.Values[authSessionKey] = user
 			err = session.Save(r, w)
 			if err != nil {
-				responseJson(w, http.StatusInternalServerError, Map{
+				helper.Json(w, http.StatusInternalServerError, helper.Map{
 					"error": err.Error(),
 					"msg": "Đăng nhập thất bại",
 				})
 				return
 			}
-			responseJson(w, http.StatusOK, Map{
+			helper.Json(w, http.StatusOK, helper.Map{
 				"msg": "Đăng nhập thành công",
 				"data": user,
 			})
 		}else{
-			responseJson(w, http.StatusBadRequest, Map{
+			helper.Json(w, http.StatusBadRequest, helper.Map{
 				"error": err.Error(),
 				"msg": msg,
 			})
 		}
 	})
-
-}
-
-func responseJson(w http.ResponseWriter, code int, data interface{}) {
-	w.WriteHeader(code)
-	body,_ := json.Marshal(data)
-	w.Header().Add("Content-Type", "application/json")
-	w.Write(body)
 }
