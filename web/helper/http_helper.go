@@ -10,6 +10,7 @@ var (
 	ErrDataInvalid = "Dữ liệu không hợp lệ"
 	ErrInternalServerError = "Lỗi nội bộ. Vui lòng liên hệ admin"
 	ErrNotFound = "Dữ liệu không tồn tại"
+	decoder = form.NewDecoder()
 )
 
 type (
@@ -41,7 +42,7 @@ func ParseJson(r *http.Request, obj interface{}) error {
 
 func ParseForm(r *http.Request, obj interface{}) error {
 	r.ParseForm()
-	decoder := form.NewDecoder()
+
 	err := decoder.Decode(obj, r.Form)
 	return err
 }
