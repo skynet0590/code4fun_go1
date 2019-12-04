@@ -37,7 +37,7 @@ func (u *User) generatePasswordHash(pw string) error {
 
 func (u *User) Update() error {
 	u.Password = ""
-	return db.Update(u).Error
+	return db.Model(&User{}).Updates(u).Error
 }
 
 func (u *User) Save() error {

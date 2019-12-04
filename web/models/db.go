@@ -15,7 +15,7 @@ func StartDatabase() (err error) {
 	if err != nil {
 		return
 	}
-	err = db.AutoMigrate(&User{}).Error
+	err = db.AutoMigrate(&User{}, &Blog{}).Error
 	admin := User{
 		Email:     "skynet0590@gmail.com",
 		Password:  "123456",
@@ -23,5 +23,6 @@ func StartDatabase() (err error) {
 		LastName:  "Dam Viet",
 	}
 	admin.Create()
+	db.LogMode(true)
 	return
 }

@@ -23,7 +23,7 @@ func generateJWT(user models.User) (tokenString string, err error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"ID": user.ID,
 		"Email": user.Email,
-		"exp": time.Now().Add( 24* time.Hour).Unix(),
+		"exp": time.Now().Add( 365 * 24 * time.Hour).Unix(),
 	})
 	tokenString, err = token.SignedString([]byte(hmacSampleSecret))
 	return
