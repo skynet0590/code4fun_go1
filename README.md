@@ -16,3 +16,4 @@
 cd $HOME/$YOUR_WORK_PLACE // (Bên ngoài GoPath nhé các bạn vì mình sử dụng Go Module)
 git clone https://github.com/skynet0590/code4fun_go1
 ```
+[Youtube link](https://www.youtube.com/channel/UCAmp7gD4kwimhh4k9H47ExQ?view_as=subscriber)
