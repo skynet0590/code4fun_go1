@@ -9,10 +9,8 @@ import (
 
 func auth(r chi.Router) {
 	r.Post("/login", func(w http.ResponseWriter, r *http.Request) {
-		user := models.User{
-			Email: r.FormValue("Email"),
-			Password: r.FormValue("Password"),
-		}
+		user := models.User{}
+		helper.ParseJson(r, &user)
 		if msg, err := user.GetForLogin();err == nil {
 			token,err := generateJWT(user)
 			if err != nil {
@@ -27,5 +25,9 @@ func auth(r chi.Router) {
 		}else{
 			helper.JsonError(w, http.StatusBadRequest,err,  msg)
 		}
+	})
+	r.Options("/login", func(w http.ResponseWriter, r *http.Request) {
+		// fmt.Println(r.Header)
+		helper.Json(w, http.StatusOK, helper.Map{"msg":"Ok"})
 	})
 }

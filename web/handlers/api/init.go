@@ -13,6 +13,10 @@ import (
 
 func Start(r chi.Router) {
 	r.Use(apiHeader)
+	r.Options("/*", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(r.Header)
+		helper.Json(w, http.StatusOK, helper.Map{"msg":"Ok"})
+	})
 	r.Route("/auth", auth)
 	r.Route("/blog", blog)
 }
@@ -66,7 +70,13 @@ func neededLoginMDW(next http.Handler) http.Handler {
 
 func apiHeader(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// r.Header
+		fmt.Println("Adding header")
+		w.Header().Add("Access-Control-Allow-Origin","*")//http://localhost:8081
+		w.Header().Add("Access-Control-Allow-Methods","GET, POST, PUT, OPTIONS, DELETE")
+		w.Header().Add("Access-Control-Allow-Headers","Authorization,X-XSRF-TOKEN,Content-Type")
+		w.Header().Add("Access-Control-Allow-Credentials", "true");
+		w.Header().Add("supports_credentials", "true");
+
 		next.ServeHTTP(w, r)
 	})
 }
