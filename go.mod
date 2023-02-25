@@ -8,5 +8,6 @@ require (
 	github.com/go-playground/form v3.1.4+incompatible
 	github.com/gorilla/sessions v1.2.0
 	github.com/jinzhu/gorm v1.9.11
-	golang.org/x/crypto v0.0.0-20191122220453-ac88ee75c92c
+	golang.org/x/crypto v0.1.0
+	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
 )
